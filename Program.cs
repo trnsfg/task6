@@ -1,4 +1,4 @@
-﻿namespace ConsoleApp25
+namespace ConsoleApp25
 {
     //завдання 1
     class Money
@@ -94,10 +94,76 @@
             price.Display();
         }
     }
+
+    //завдання 2
+
+    class Device
+    {
+        protected string Name { get; set; }
+        protected string Characteristics { get; set; }
+        public Device(string name, string characteristics)
+        {
+            Name = name;
+            Characteristics = characteristics;
+        }
+        public virtual void Sound()
+        {
+            Console.WriteLine("Пристрій видає звук.");
+        }
+        public void Show()
+        {
+            Console.WriteLine($"Назва пристрою: {Name}");
+        }
+        public void Desc()
+        {
+            Console.WriteLine($"Опис пристрою: {Characteristics}");
+        }
+    }
+
+    class Kettle : Device
+    {
+        public Kettle(string name, string characteristics) : base(name, characteristics) { }
+
+        public override void Sound()
+        {
+            Console.WriteLine("Шшш...");
+        }
+    }
+
+    class Microwave : Device
+    {
+        public Microwave(string name, string characteristics) : base(name, characteristics) { }
+
+        public override void Sound()
+        {
+            Console.WriteLine("Біп-біп");
+        }
+    }
+    class Car : Device
+    {
+        public Car(string name, string characteristics) : base(name, characteristics) { }
+
+        public override void Sound()
+        {
+            Console.WriteLine("Бррр...");
+        }
+    }
+    class Steamboat : Device
+    {
+        public Steamboat(string name, string characteristics) : base(name, characteristics) { }
+
+        public override void Sound()
+        {
+            Console.WriteLine("Ту-тууу!");
+        }
+    }
+
+
     internal class Program
     {
         static void Main(string[] args)
         {
+            //завдання 1
             try
             {
                 Money productPrice = new Money(19, 70);
@@ -117,6 +183,25 @@
             {
                 Console.WriteLine($"Помилка: {ex.Message}");
             }
+
+            //завдання 2
+
+            Device kettle = new Kettle("Чайник", "Електричний, 2 л");
+            Device microwave = new Microwave("Мікрохвильовка", "Потужність 900 Вт");
+            Device car = new Car("Автомобіль", "Електричний, Tesla Model 3");
+            Device steamboat = new Steamboat("Пароплав", "Пасажирський, 300 місць");
+
+            Device[] devices = { kettle, microwave, car, steamboat };
+
+            foreach (var device in devices)
+            {
+                device.Show();
+                device.Desc();
+                device.Sound();
+                Console.WriteLine();
+            }
+
+
         }
     }
 }
