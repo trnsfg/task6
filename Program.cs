@@ -231,6 +231,80 @@ namespace ConsoleApp25
             Console.WriteLine("Видає звук віолончелі");
         }
     }
+    //завдання 4
+    abstract class Worker
+    {
+        public string Name { get; set; }
+        public int Age { get; set; }
+
+        public Worker(string name, int age)
+        {
+            Name = name;
+            Age = age;
+        }
+
+        public abstract void Print();
+    }
+
+    class President : Worker
+    {
+        public string CompanyName { get; set; }
+
+        public President(string name, int age, string companyName) : base(name, age)
+        {
+            CompanyName = companyName;
+        }
+
+        public override void Print()
+        {
+            Console.WriteLine($"Президент: {Name}, {Age} років, керує корпорацією {CompanyName}.");
+        }
+    }
+
+    class Security : Worker
+    {
+        public string Shift { get; set; }
+
+        public Security(string name, int age, string shift) : base(name, age)
+        {
+            Shift = shift;
+        }
+
+        public override void Print()
+        {
+            Console.WriteLine($"Охоронець: {Name}, {Age} років, працює у зміні {Shift}.");
+        }
+    }
+    class Manager : Worker
+    {
+        public int TeamSize { get; set; }
+
+        public Manager(string name, int age, int teamSize) : base(name, age)
+        {
+            TeamSize = teamSize;
+        }
+
+        public override void Print()
+        {
+            Console.WriteLine($"Менеджер: {Name}, {Age} років, керує групою з {TeamSize} осіб.");
+        }
+    }
+
+    class Engineer : Worker
+    {
+        public string Specialization { get; set; }
+
+        public Engineer(string name, int age, string specialization) : base(name, age)
+        {
+            Specialization = specialization;
+        }
+
+        public override void Print()
+        {
+            Console.WriteLine($"Інженер: {Name}, {Age} років, спеціалізація: {Specialization}.");
+        }
+    }
+
 
     internal class Program
     {
@@ -292,6 +366,17 @@ namespace ConsoleApp25
                 Console.WriteLine();
 
             }
+
+            //завдання 4
+            Worker president = new President("Володимир", 55, "GlobalTech");
+            Worker security = new Security("Петро", 40, "денна");
+            Worker manager = new Manager("Юлія", 35, 15);
+            Worker engineer = new Engineer("Сергій", 28, "кібербезпека");
+
+            president.Print();
+            security.Print();
+            manager.Print();
+            engineer.Print();
         }
     }
 }
