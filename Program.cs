@@ -158,6 +158,79 @@ namespace ConsoleApp25
         }
     }
 
+    //завдання 3
+    class MusicalInstrument
+    {
+        protected string Name { get; set; }
+        protected string Characteristics { get; set; }
+        protected string HistoryInfo { get; set; }
+        public MusicalInstrument(string name, string characteristics, string history)
+        {
+            Name = name;
+            Characteristics = characteristics;
+            HistoryInfo = history;
+        }
+        public virtual void Sound()
+        {
+            Console.WriteLine("Музичний інструмент видає звук.");
+        }
+        public void Show()
+        {
+            Console.WriteLine($"Назва музичного інструменту: {Name}");
+        }
+        public void Desc()
+        {
+            Console.WriteLine($"Опис інструменту: {Characteristics}");
+        }
+        public void History()
+        {
+            Console.WriteLine($"Історія інструменту: {HistoryInfo}");
+        }
+    }
+
+    class Violin : MusicalInstrument
+    {
+        public Violin(string name, string characteristics, string history)
+            : base(name, characteristics, history) { }
+
+        public override void Sound()
+        {
+            Console.WriteLine("Видає звук скрипки");
+        }
+    }
+
+    class Trombone : MusicalInstrument
+    {
+        public Trombone(string name, string characteristics, string history)
+            : base(name, characteristics, history) { }
+
+        public override void Sound()
+        {
+            Console.WriteLine("Видає звук тромбону");
+        }
+    }
+
+    class Ukulele : MusicalInstrument
+    {
+        public Ukulele(string name, string characteristics, string history)
+            : base(name, characteristics, history) { }
+
+        public override void Sound()
+        {
+            Console.WriteLine("Видає звук укулеле");
+        }
+    }
+
+    class Cello : MusicalInstrument
+    {
+        public Cello(string name, string characteristics, string history)
+            : base(name, characteristics, history) { }
+
+        public override void Sound()
+        {
+            Console.WriteLine("Видає звук віолончелі");
+        }
+    }
 
     internal class Program
     {
@@ -201,7 +274,24 @@ namespace ConsoleApp25
                 Console.WriteLine();
             }
 
+            //завдання 3
 
+            MusicalInstrument violin = new Violin("Скрипка", "4 струни, мелодійний звук", "Створена в XIV столітті в Італії.");
+            MusicalInstrument trombone = new Trombone("Тромбон", "Духовий інструмент із латуні", "Винахід XV століття у Франції.");
+            MusicalInstrument ukulele = new Ukulele("Укулеле", "Гавайський інструмент із 4 струнами", "Популярний з XIX століття.");
+            MusicalInstrument cello = new Cello("Віолончель", "Смичковий інструмент із глибоким звуком", "Відомий із XVI століття.");
+
+            MusicalInstrument[] instruments = { violin, trombone, ukulele, cello };
+
+            foreach (var instrument in instruments)
+            {
+                instrument.Show();
+                instrument.Desc();
+                instrument.Sound();
+                instrument.History();
+                Console.WriteLine();
+
+            }
         }
     }
 }
